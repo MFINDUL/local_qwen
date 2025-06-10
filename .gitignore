@@ -1,0 +1,50 @@
+# 환경 변수 파일들
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Python 관련
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE 설정
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS 관련
+.DS_Store
+Thumbs.db
+
+# 로그 파일
+*.log
+
+# 임시 파일
+*.tmp
+*.temp
+
+# API 키 및 민감한 정보
+config.json
+secrets.json
+credentials.json
+
+# 데이터베이스
+*.db
+*.sqlite
+*.sqlite3
+
+# 빌드 파일
+dist/
+build/
+*.egg-info/
