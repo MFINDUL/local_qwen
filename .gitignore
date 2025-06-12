@@ -48,3 +48,6 @@ credentials.json
 dist/
 build/
 *.egg-info/
+
+#파일 제외
+unsus.pdf 
