@@ -4,20 +4,32 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.prompts import load_prompt 
 
-def set_prompt(selected_option):
-    # 딕셔너리에서 키와 값 추출
-    if isinstance(selected_option, dict):
-        key = list(selected_option.keys())[0]
-        path = list(selected_option.values())[0]
+def set_prompt(keys = '일반 질의응답',paths = 'prompts/general.yaml'):
+    if keys == "일반 질의응답":
+        # prompt = ChatPromptTemplate.from_messages(
+        # [
+        #     ('system','당신은 친절한 도우미 LANI입니다. '),
+        #     ('user','{question}에 대해 설명해주세요')
+        # ]
+        prompt = load_prompt(path=paths,encoding='UTF-8')
+        # )
+    elif keys == "진동 전문가":
+        # prompt = ChatPromptTemplate.from_messages(
+        # [
+        #     ('system','당신은 진동 고장 진단 전문가 LANI입니다.  '),
+        #     ('user','{question}에 대해 설명해주세요')
+        # ]
+        # )
+        prompt = load_prompt(path=paths,encoding='UTF-8')
     else:
-        # 기본값 처리
-        key = "일반 질의응답"
-        path = 'prompt/general.yaml'
-    
-    # YAML 파일에서 프롬프트 로드
-    prompt = load_prompt(path=path, encoding='UTF-8')
+        # prompt = ChatPromptTemplate.from_messages(
+        # [
+        #     ('system','당신은 fps 전문가 LANI입니다. '),
+        #     ('user','{question}에 대해 설명해주세요')
+        # ]
+        # )
+        prompt = load_prompt(path=paths,encoding='UTF-8')   
     return prompt
-
 def set_model():
     llm = ChatOpenAI(
         temperature= 0.2,
@@ -33,24 +45,12 @@ def setstate(role,content):
      
 with st.sidebar:
     st.button('대화 초기화', on_click=clear_chat_history)
-    
-    # 템플릿 옵션 정의
-    template_options = {
-        "일반 질의응답": 'prompt/general.yaml',
-        "진동 전문가": 'prompt/vibration.yaml', 
-        "SNS 전문가": 'prompt/SNS.yaml'
-    }
-    
-    selected_key = st.selectbox(
+    option = st.selectbox(
         "템플릿 한번 골라볼까요?",
-        list(template_options.keys()),
+        ("일반 질의응답", "진동 전문가", "SNS 전문가" ),
         on_change=clear_chat_history
     )
-    
-    # 선택된 키에 해당하는 딕셔너리 생성
-    option = {selected_key: template_options[selected_key]}
-    
-    st.write(f'{selected_key}으로 설정됐습니다!')
+    st.write(f'{option}으로 설정됐습니다!')
     prompt = set_prompt(option)
     
 
