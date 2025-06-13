@@ -1,9 +1,0 @@
-_type : 'prompt'
-template : |   
-  {country}에 대해서 설명해주세요 양식은 다음과 같습니다.
-  [양식]
-  1.지리적인 위치를 알려주세요
-  2.문화를 알려주세요
-  3.모든 설명은 20글자 내외여야합니다.
-  #answer : 
-input_variables : ['country']
