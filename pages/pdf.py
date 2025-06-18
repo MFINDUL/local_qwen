@@ -1,3 +1,6 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import streamlit as st 
 from langchain_core.messages.chat import ChatMessage
 from langchain_openai import ChatOpenAI
@@ -11,7 +14,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough,RunnableLambda
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from utils.utils import set_model,setstate,clear_chat_history
+from utils.utils import * 
 import tempfile
 import os 
 
